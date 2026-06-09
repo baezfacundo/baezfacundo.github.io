@@ -1,4 +1,3 @@
-# Facundo Báez
 Welcome to my personal portfolio!
 
 ## About Me
