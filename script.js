@@ -4,7 +4,8 @@ const areas = {
   cloud: { number: "01 / CLOUD", descriptionKey: "cloudDescription" },
   engineering: { number: "02 / ENGINEERING", descriptionKey: "engineeringDescription" },
   leadership: { number: "03 / LEADERSHIP", descriptionKey: "leadershipDescription" },
-  security: { number: "04 / DEVSECOPS", descriptionKey: "securityDescription" }
+  security: { number: "04 / DEVSECOPS", descriptionKey: "securityDescription" },
+  ai: { numberKey: "aiDetailTitle", descriptionKey: "aiDescription" }
 };
 
 const nodes = document.querySelectorAll(".diagram-node");
@@ -16,7 +17,14 @@ nodes.forEach((node) => {
       item.classList.toggle("is-selected", selected);
       item.setAttribute("aria-pressed", String(selected));
     });
-    document.getElementById("diagram-number").textContent = area.number;
+    const number = document.getElementById("diagram-number");
+    if (area.numberKey) {
+      number.dataset.i18n = area.numberKey;
+      number.textContent = translations[area.numberKey][currentLanguage];
+    } else {
+      delete number.dataset.i18n;
+      number.textContent = area.number;
+    }
     const description = document.getElementById("diagram-description");
     description.dataset.i18n = area.descriptionKey;
     description.textContent = translations[area.descriptionKey][currentLanguage];

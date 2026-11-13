@@ -2,6 +2,13 @@
 
 // The English HTML also provides a complete fallback without JavaScript.
 const translations = {
+  "aiNode": { "en": "AI", "es": "IA" },
+  "aiNodeLabel": { "en": "AI across every stage", "es": "IA en todas las etapas" },
+  "aiDetailTitle": { "en": "05 / AI · ACROSS EVERY STAGE", "es": "05 / IA · EN TODAS LAS ETAPAS" },
+  "aiDescription": {
+    "en": "AI connects every stage: exploring architecture options, supporting development, sharing knowledge and strengthening DevSecOps, with human judgment at the center.",
+    "es": "La IA conecta todas las etapas: explorar alternativas de arquitectura, acompañar el desarrollo, compartir conocimiento y fortalecer DevSecOps, con el criterio humano en el centro."
+  },
   "cloudNode": { "en": "Cloud architecture", "es": "Arquitectura cloud" },
   "engineeringNode": { "en": "Engineering", "es": "Ingeniería" },
   "leadershipNode": { "en": "Leadership", "es": "Liderazgo" },
@@ -88,10 +95,6 @@ const translations = {
   "diagramHint": {
     "en": "Select a node ↗",
     "es": "Seleccioná un nodo ↗"
-  },
-  "keepExploring": {
-    "en": "Keep exploring",
-    "es": "Seguí explorando"
   },
   "profileLabel": {
     "en": "01 / PROFILE",
