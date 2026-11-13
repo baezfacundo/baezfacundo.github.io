@@ -356,5 +356,9 @@ function setLanguage(language) {
 document.querySelectorAll("[data-language]").forEach((button) => {
   button.addEventListener("click", () => setLanguage(button.dataset.language));
 });
-setLanguage("en");
+const browserLanguages = navigator.languages?.length ? navigator.languages : [navigator.language || "en"];
+const defaultLanguage = browserLanguages
+  .map((language) => language.toLowerCase().split("-")[0])
+  .find((language) => language === "en" || language === "es") || "en";
+setLanguage(defaultLanguage);
 document.querySelector(".language-switch").hidden = false;

@@ -29,6 +29,12 @@
   .core svg { width: 31px; }
 }
 
+/* Reserve the longest description's height at every width and in both languages. */
+.architecture-detail { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; }
+.architecture-detail .detail-number { grid-area: 1 / 1; }
+.architecture-detail p { grid-area: 2 / 1; }
+.architecture-description-sizer { visibility: hidden; pointer-events: none; user-select: none; }
+
 .hero-actions { flex-wrap: wrap; gap: 16px 24px; }
 .secondary { border-color: var(--line); }
 .secondary:hover { background: #eaece4; border-color: var(--ink); }

@@ -9,27 +9,48 @@ const areas = {
 };
 
 const nodes = document.querySelectorAll(".diagram-node");
+const orderedNodes = Object.keys(areas).map((key) =>
+  Array.from(nodes).find((node) => node.dataset.area === key)
+);
+const nodeRotationDelay = 5000;
+let nodeRotationTimer;
+
+function selectNode(node) {
+  const area = areas[node.dataset.area];
+  nodes.forEach((item) => {
+    const selected = item === node;
+    item.classList.toggle("is-selected", selected);
+    item.setAttribute("aria-pressed", String(selected));
+  });
+  const number = document.getElementById("diagram-number");
+  if (area.numberKey) {
+    number.dataset.i18n = area.numberKey;
+    number.textContent = translations[area.numberKey][currentLanguage];
+  } else {
+    delete number.dataset.i18n;
+    number.textContent = area.number;
+  }
+  const description = document.getElementById("diagram-description");
+  description.dataset.i18n = area.descriptionKey;
+  description.textContent = translations[area.descriptionKey][currentLanguage];
+}
+
+function scheduleNodeRotation() {
+  window.clearTimeout(nodeRotationTimer);
+  nodeRotationTimer = window.setTimeout(() => {
+    const currentIndex = orderedNodes.findIndex((node) => node.classList.contains("is-selected"));
+    selectNode(orderedNodes[(currentIndex + 1) % orderedNodes.length]);
+    scheduleNodeRotation();
+  }, nodeRotationDelay);
+}
+
 nodes.forEach((node) => {
   node.addEventListener("click", () => {
-    const area = areas[node.dataset.area];
-    nodes.forEach((item) => {
-      const selected = item === node;
-      item.classList.toggle("is-selected", selected);
-      item.setAttribute("aria-pressed", String(selected));
-    });
-    const number = document.getElementById("diagram-number");
-    if (area.numberKey) {
-      number.dataset.i18n = area.numberKey;
-      number.textContent = translations[area.numberKey][currentLanguage];
-    } else {
-      delete number.dataset.i18n;
-      number.textContent = area.number;
-    }
-    const description = document.getElementById("diagram-description");
-    description.dataset.i18n = area.descriptionKey;
-    description.textContent = translations[area.descriptionKey][currentLanguage];
+    selectNode(node);
+    scheduleNodeRotation();
   });
 });
+scheduleNodeRotation();
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
