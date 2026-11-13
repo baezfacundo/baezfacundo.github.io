@@ -29,6 +29,10 @@
   .core svg { width: 31px; }
 }
 
+.hero-actions { flex-wrap: wrap; gap: 16px 24px; }
+.secondary { border-color: var(--line); }
+.secondary:hover { background: #eaece4; border-color: var(--ink); }
+
 .header-actions { display: flex; align-items: center; gap: 26px; }
 .language-switch { display: inline-flex; padding: 3px; gap: 2px; border: 1px solid var(--line); border-radius: 30px; background: #eaece4; }
 .language-switch[hidden] { display: none; }

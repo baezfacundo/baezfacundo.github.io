@@ -60,6 +60,10 @@ const translations = {
     "en": "Explore my profile",
     "es": "Explorá mi perfil"
   },
+  "downloadCV": {
+    "en": "Download CV (PDF)",
+    "es": "Descargar CV (PDF)"
+  },
   "experienceFirst": {
     "en": "years of experience in",
     "es": "años de experiencia en"
